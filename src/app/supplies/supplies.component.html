@@ -1,3 +1,4 @@
+<h3>Add a beverage</h3>
 <form [formGroup]="beverageForm" class="example-form">
   <md-form-field>
     <input mdInput type="text" placeholder="New beverage" formControlName="name">
@@ -14,6 +15,32 @@
   <button md-raised-button color="primary">Add</button>
 </form>
 
-<h2>Supplies</h2>
+<h3>Inventory</h3>
+<div>
+  <md-table #table [dataSource]="dataSource">
+    <ng-container mdColumnDef="name">
+      <md-header-cell *mdHeaderCellDef>Beverage</md-header-cell>
+      <md-cell *mdCellDef="let row">{{row.name}}</md-cell>
+    </ng-container>
 
+    <ng-container mdColumnDef="quantity">
+      <md-header-cell *mdHeaderCellDef>Quantity</md-header-cell>
+      <md-cell *mdCellDef="let row">{{row.value}}</md-cell>
+    </ng-container>
 
+    <ng-container mdColumnDef="buttons">
+      <md-header-cell *mdHeaderCellDef></md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <button md-mini-fab>
+          <i class="material-icons">&#xE145;</i>
+        </button>
+        <button md-mini-fab>
+          <i class="material-icons">&#xE15B;</i>
+        </button>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>

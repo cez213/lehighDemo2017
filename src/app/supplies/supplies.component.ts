@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
-const EMAIL_REGEX =
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+import {ApiService, BeverageData} from '../api.service';
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-supplies',
@@ -10,20 +11,31 @@ const EMAIL_REGEX =
   styleUrls: ['./supplies.component.css']
 })
 export class SuppliesComponent implements OnInit {
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern(EMAIL_REGEX)]);
-
   beverageForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-    ]),
-    quantity: new FormControl('', [
-      Validators.required,
-    ])
+    name: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [Validators.required])
   });
+  dataSource: BeverageDataSource;
+  displayedColumns = ['name', 'quantity', 'buttons'];
 
-  constructor() { }
+  constructor(private readonly apiService: ApiService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.apiService.list().subscribe((data: BeverageData[]) => {
+      console.log('data', data);
+      this.dataSource = new BeverageDataSource(data);
+    });
+  }
+}
+
+export class BeverageDataSource extends DataSource<any> {
+  constructor(private readonly beverageData: BeverageData[]) {
+    super();
+  }
+
+  connect(): Observable<BeverageData[]> {
+    return Observable.of(this.beverageData);
+  }
+
+  disconnect() {}
 }
