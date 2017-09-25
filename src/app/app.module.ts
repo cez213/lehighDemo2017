@@ -1,33 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MdButtonModule, MdInputModule, MdTableModule} from '@angular/material';
-import {HttpModule} from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { SuppliesComponent } from './supplies/supplies.component';
+import {AppComponent} from './app.component';
+import {SuppliesModule} from './supplies/supplies.module';
+import {MaterialModule} from './material.module';
 
 @NgModule({
-  exports: [
-    MdInputModule,
-    MdButtonModule,
-    MdTableModule,
-  ]
-})
-export class AppMaterialModule {}
-
-@NgModule({
-  declarations: [AppComponent, SuppliesComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
-    AppMaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MaterialModule,
+    SuppliesModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, SuppliesComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -7,3 +7,17 @@
 .example-full-width {
   width: 100%;
 }
+
+.inventory {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.inventory .mat-mini-fab {
+  width: 30px;
+  height: 30px;
+}
+
+.inventory .material-icons {
+  font-size: 18px;
+}
