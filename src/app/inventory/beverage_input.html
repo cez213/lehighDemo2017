@@ -1,13 +1,15 @@
 <h3>Add a beverage</h3>
 <form [formGroup]="beverageForm" class="example-form">
   <md-form-field>
-    <input mdInput type="text" placeholder="New beverage" formControlName="name">
+    <input mdInput type="text" placeholder="New beverage" formControlName="name"
+           autocomplete="off">
     <md-error *ngIf="beverageForm.get('name').hasError('required')">
       Beverage name is <strong>required</strong>
     </md-error>
   </md-form-field>
   <md-form-field>
-    <input mdInput type="number" placeholder="Quantity" formControlName="value">
+    <input mdInput type="number" placeholder="Quantity" formControlName="value"
+           autocomplete="off">
     <md-error *ngIf="beverageForm.get('value').hasError('required')">
       Quantity is <strong>required</strong>
     </md-error>

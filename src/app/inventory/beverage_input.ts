@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../api.service';
 
@@ -25,8 +25,9 @@ export class BeverageInputComponent implements OnInit {
 
   addBeverage() {
     console.log('adding beverage', this.beverageForm.value);
-    this.apiService.addOrUpdate(this.beverageForm.value).then(data => {
-      console.log('data', data);
+    this.apiService.addOrUpdate(this.beverageForm.value).then(() => {
+      // this.change.emit(new AddBeverageEvent());
     });
   }
 }
+

@@ -11,24 +11,24 @@ import 'rxjs/add/observable/of';
 })
 export class InventoryListComponent implements OnInit {
   dataSource: BeverageDataSource;
-  displayedColumns = ['name', 'quantity', 'buttons'];
+  beverages: Observable<BeverageData[]>;
+  displayedColumns = ['name', 'quantity'];
 
   constructor(private readonly apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.list().subscribe((data: BeverageData[]) => {
-      this.dataSource = new BeverageDataSource(data);
-    });
+    this.beverages = this.apiService.list();
+    this.dataSource = new BeverageDataSource(this.beverages);
   }
 }
 
 export class BeverageDataSource extends DataSource<any> {
-  constructor(private readonly beverageData: BeverageData[]) {
+  constructor(private readonly beverageData: Observable<BeverageData[]>) {
     super();
   }
 
   connect(): Observable<BeverageData[]> {
-    return Observable.of(this.beverageData);
+    return this.beverageData;
   }
 
   disconnect() {}
