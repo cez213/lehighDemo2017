@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UrlSetterComponent } from './url-setter.component';
+import { UrlSetterComponent } from './url_setter';
 
 describe('UrlSetterComponent', () => {
   let component: UrlSetterComponent;

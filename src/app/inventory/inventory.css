@@ -1,6 +1,6 @@
 .example-form {
   min-width: 150px;
-  max-width: 500px;
+  max-width: 510px;
   width: 100%;
 }
 
@@ -20,4 +20,8 @@
 
 .inventory .material-icons {
   font-size: 18px;
+}
+
+.app-form-btn {
+  margin-left: 10px;
 }

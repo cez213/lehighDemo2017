@@ -1,0 +1,13 @@
+.url-setter-form {
+  max-width: 500px;
+  width: 100%;
+}
+
+.url-setter-field {
+  width: calc(100% - 105px);
+}
+
+.app-form-btn {
+  margin-left: 10px;
+}
+
