@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ApiService} from '../api.service';
 import {MaterialModule} from '../material.module';
 
-import {SuppliesComponent} from './supplies.component';
+import {SuppliesComponent} from './inventory_list';
 
 @NgModule({
   imports: [

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService, BeverageData} from '../api.service';
 import {DataSource} from '@angular/cdk/collections';
@@ -6,9 +6,9 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 @Component({
-  selector: 'app-supplies',
-  templateUrl: './supplies.component.html',
-  styleUrls: ['./supplies.component.css']
+  selector: 'app-inventory-list',
+  templateUrl: './inventory_list.html',
+  styleUrls: ['./inventory.css']
 })
 export class SuppliesComponent implements OnInit {
   beverageForm = new FormGroup({
