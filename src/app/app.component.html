@@ -1,6 +1,9 @@
-<md-toolbar color="primary">{{title}}</md-toolbar>
+<md-toolbar color="primary">
+  <span>{{title}}</span>
+  <span class="toolbar-fill-remaining-space"></span>
+  <app-endpoint-setter-dialog></app-endpoint-setter-dialog>
+</md-toolbar>
 <div class="app-body">
-  <app-url-setter></app-url-setter>
   <app-beverage-input></app-beverage-input>
   <app-inventory-list></app-inventory-list>
 </div>

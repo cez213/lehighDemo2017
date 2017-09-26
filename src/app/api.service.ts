@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 export const DEFAULT_ENDPOINT = '//tutorial-179815.appspot.com';
 
@@ -9,7 +10,7 @@ export const DEFAULT_ENDPOINT = '//tutorial-179815.appspot.com';
 export class ApiService {
   private apiUrl: string = DEFAULT_ENDPOINT;
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   // TODO(carolynz): add local storage.
   setApiUrl(url: string) {
@@ -22,12 +23,15 @@ export class ApiService {
   }
 
   list(): Observable<BeverageData[]> {
-    return this.http.get(`${this.apiUrl}/list`).map(res => res.json());
+    return this.http.get(`${this.apiUrl}/list`);
   }
 
-  // Add or replace: /put?name=test&value=100.
-  addOrUpdate(beverage: BeverageData) {
-    return this.http.put(`${this.apiUrl}/put`, beverage).map(res => res.json());
+  addOrUpdate(beverage: BeverageData): Promise<void> {
+    return this.http
+        .get(`${this.apiUrl}/put?name=${beverage.name}&value=${beverage.value}`)
+        .toPromise()
+        .then(res => res)
+        .catch(err => err);
   }
 }
 

@@ -1,13 +1,17 @@
 <h3 md-dialog-title>Set your endpoint url</h3>
-<div md-dialog-content>
-  Currently this application is using the endpoint at: {{apiUrl}}.
-  Add your URL below to point this frontend to your backend.
-  <form class="url-setter-form">
-    <md-form-field class="url-setter-field">
+<md-dialog-content>
+  <div class="small-text small-space-below">
+    Currently this application is using the endpoint at: <strong>{{apiUrl}}</strong>.
+    Add your URL below to point this frontend to your backend.
+  </div>
+  <form class="endpoint-setter-form">
+    <md-form-field class="endpoint-setter-field">
       <input mdInput placeholder="Endpoint URL" [formControl]="urlFormControl">
-      <md-hint align="start"><strong>//tutorial-somenumber.appspot.com</strong></md-hint>
+      <md-hint align="start"><strong>Ex: //tutorial-somenumber.appspot.com</strong></md-hint>
     </md-form-field>
-    <button md-raised-button color="primary" class="app-form-btn"
-            (click)="updateUrl()">Update</button>
   </form>
-</div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button [md-dialog-close]="urlFormControl.value">Save</button>
+  <button md-button md-dialog-close>Close</button>
+</md-dialog-actions>

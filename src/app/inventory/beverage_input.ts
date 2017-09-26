@@ -25,7 +25,7 @@ export class BeverageInputComponent implements OnInit {
 
   addBeverage() {
     console.log('adding beverage', this.beverageForm.value);
-    this.apiService.addOrUpdate(this.beverageForm.value).subscribe(data => {
+    this.apiService.addOrUpdate(this.beverageForm.value).then(data => {
       console.log('data', data);
     });
   }

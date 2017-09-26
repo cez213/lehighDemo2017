@@ -1,25 +1,42 @@
-import {Component} from '@angular/core';
-import {ApiService} from '../api.service';
+import {Component, Inject} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {MdDialog} from '@angular/material';
+import {MD_DIALOG_DATA, MdDialog} from '@angular/material';
+import {ApiService} from '../api.service';
 
 @Component({
-  selector: 'app-url-setter',
-  templateUrl: './url_setter.html',
-  styleUrls: ['./url_setter.css']
+  selector: 'app-endpoint-setter-dialog',
+  templateUrl: './endpoint_dialog.html',
+  styleUrls: ['../app.component.css']
 })
-export class UrlSetterComponent {
+export class EndpointDialogComponent {
+  constructor(private apiService: ApiService, public dialog: MdDialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(EndpointSetterComponent, {
+      width: '500px',
+      data: {apiUrl: this.apiService.getApiUrl()}
+    });
+
+    dialogRef.afterClosed().subscribe((url: string) => {
+      if (url) {
+        this.apiService.setApiUrl(url);
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'app-endpoint-setter',
+  templateUrl: './endpoint_setter.html',
+  styleUrls: ['../app.component.css']
+})
+export class EndpointSetterComponent {
   apiUrl: string;
   urlFormControl: FormControl;
 
-  constructor(private apiService: ApiService) {
-    this.apiUrl = this.apiService.getApiUrl();
+  constructor(@Inject(MD_DIALOG_DATA) public data: {apiUrl: string}) {
+    this.apiUrl = data.apiUrl;
     this.createFormControl();
-  }
-
-  updateUrl() {
-    console.log('value', this.urlFormControl.value);
-    this.apiService.setApiUrl(this.urlFormControl.value);
   }
 
   // TODO(carolynz): Add validator for url format.
@@ -27,18 +44,5 @@ export class UrlSetterComponent {
     this.urlFormControl = new FormControl('', [
       Validators.required,
     ]);
-  }
-}
-
-@Component({
-  selector: 'app-endpoint-dialog',
-  templateUrl: './endpoint_dialog.html',
-  styleUrls: ['./url_setter.css']
-})
-export class EndpointDialogComponent {
-  constructor(public dialog: MdDialog) {}
-
-  openDialog() {
-    this.dialog.open(UrlSetterComponent, {});
   }
 }

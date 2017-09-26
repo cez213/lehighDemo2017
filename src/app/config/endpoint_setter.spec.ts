@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UrlSetterComponent } from './url_setter';
+import { EndpointSetterComponent } from './endpoint_setter';
 
-describe('UrlSetterComponent', () => {
-  let component: UrlSetterComponent;
-  let fixture: ComponentFixture<UrlSetterComponent>;
+describe('EndpointSetterComponent', () => {
+  let component: EndpointSetterComponent;
+  let fixture: ComponentFixture<EndpointSetterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UrlSetterComponent ]
+      declarations: [ EndpointSetterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UrlSetterComponent);
+    fixture = TestBed.createComponent(EndpointSetterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
