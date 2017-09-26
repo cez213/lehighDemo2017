@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {SuppliesModule} from './supplies/supplies.module';
+import {InventoryModule} from './inventory/inventory_module';
 import {MaterialModule} from './material.module';
 
 @NgModule({
@@ -12,7 +12,7 @@ import {MaterialModule} from './material.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    SuppliesModule,
+    InventoryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

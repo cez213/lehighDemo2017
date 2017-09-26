@@ -6,17 +6,21 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApiService {
   apiUrl = '//tutorial-179815.appspot.com';
-  // dataChange: BehaviorSubject<BeverageData[]> = new BehaviorSubject<BeverageData[]>([]);
-  // get data(): BeverageData[] {return this.dataChange.value;}
 
   constructor(private http: Http) {}
 
   setApiUrl(url: string) {
+    // TODO(carolynz): check url format also check there is no slash at the end.
     this.apiUrl = url;
   }
 
   list(): Observable<BeverageData[]> {
     return this.http.get(`${this.apiUrl}/list`).map(res => res.json());
+  }
+
+  // Add or replace: /put?name=test&value=100.
+  addOrUpdate(beverage: BeverageData) {
+    return this.http.put(`${this.apiUrl}/put`, beverage).map(res => res.json());
   }
 }
 

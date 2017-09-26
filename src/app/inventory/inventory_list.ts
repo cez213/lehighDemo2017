@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService, BeverageData} from '../api.service';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
@@ -10,11 +9,7 @@ import 'rxjs/add/observable/of';
   templateUrl: './inventory_list.html',
   styleUrls: ['./inventory.css']
 })
-export class SuppliesComponent implements OnInit {
-  beverageForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required])
-  });
+export class InventoryListComponent implements OnInit {
   dataSource: BeverageDataSource;
   displayedColumns = ['name', 'quantity', 'buttons'];
 
@@ -22,7 +17,6 @@ export class SuppliesComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.list().subscribe((data: BeverageData[]) => {
-      console.log('data', data);
       this.dataSource = new BeverageDataSource(data);
     });
   }

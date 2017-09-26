@@ -7,7 +7,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ApiService} from '../api.service';
 import {MaterialModule} from '../material.module';
 
-import {SuppliesComponent} from './inventory_list';
+import {InventoryListComponent} from './inventory_list';
+import {BeverageInputComponent} from './beverage_input';
 
 @NgModule({
   imports: [
@@ -19,10 +20,17 @@ import {SuppliesComponent} from './inventory_list';
     HttpModule,
   ],
   exports: [
-    SuppliesComponent,
+    InventoryListComponent,
+    BeverageInputComponent,
   ],
   providers: [ApiService],
-  declarations: [SuppliesComponent],
-  bootstrap: [SuppliesComponent]
+  declarations: [
+    InventoryListComponent,
+    BeverageInputComponent,
+  ],
+  bootstrap: [
+    InventoryListComponent,
+    BeverageInputComponent,
+  ]
 })
-export class SuppliesModule {}
+export class InventoryModule {}

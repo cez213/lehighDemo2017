@@ -1,20 +1,3 @@
-<h3>Add a beverage</h3>
-<form [formGroup]="beverageForm" class="example-form">
-  <md-form-field>
-    <input mdInput type="text" placeholder="New beverage" formControlName="name">
-    <md-error *ngIf="beverageForm.get('name').hasError('required')">
-      Beverage name is <strong>required</strong>
-    </md-error>
-  </md-form-field>
-  <md-form-field>
-    <input mdInput type="number" placeholder="Quantity" formControlName="quantity">
-    <md-error *ngIf="beverageForm.get('quantity').hasError('required')">
-      Quantity is <strong>required</strong>
-    </md-error>
-  </md-form-field>
-  <button md-raised-button color="primary">Add</button>
-</form>
-
 <h3>Inventory</h3>
 <div class="inventory">
   <md-table #table [dataSource]="dataSource">
