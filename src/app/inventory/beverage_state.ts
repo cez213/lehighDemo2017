@@ -1,10 +1,14 @@
 import {BeverageData} from '../api.service';
 
-export interface BeverageStateActionPayload {
+export interface BeverageState {
+  beverages: BeverageData[];
+}
+
+export interface BeverageActionPayload {
   beverages?: BeverageData[];
 }
 
-export type BeverageStateActionTypes = 'ADD_BEVERAGE' |'CHANGE_ENDPOINT'|'UPDATE_BEVERAGE';
+export type BeverageActionTypes = 'ADD_BEVERAGE' |'CHANGE_ENDPOINT'|'UPDATE_BEVERAGE';
 
 // export enum BeverageStateActionTypes {
 //   ADD_BEVERAGE = 'ADD_BEVERAGE',
@@ -12,7 +16,7 @@ export type BeverageStateActionTypes = 'ADD_BEVERAGE' |'CHANGE_ENDPOINT'|'UPDATE
 //   UPDATE_BEVERAGE = 'UPDATE_BEVERAGE',
 // }
 
-export interface BeverageStateAction {
-  type: BeverageStateActionTypes;
-  payload?: BeverageStateActionPayload;
+export interface BeverageAction {
+  type: BeverageActionTypes;
+  payload?: BeverageActionPayload;
 }
