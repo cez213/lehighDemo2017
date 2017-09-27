@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Store} from '@ngrx/store';
 import {ApiService, BeverageData} from '../api.service';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {BeverageState} from '../beverages';
 
 @Component({
   selector: 'app-inventory-list',
@@ -10,15 +12,28 @@ import 'rxjs/add/observable/of';
   styleUrls: ['./inventory.css']
 })
 export class InventoryListComponent implements OnInit {
-  dataSource: BeverageDataSource;
-  beverages: Observable<BeverageData[]>;
-  displayedColumns = ['name', 'quantity'];
+  @Input() beverages: Observable<BeverageData>;
+  @Output() listBeverages = new EventEmitter();
 
-  constructor(private readonly apiService: ApiService) {}
-
+  // dataSource: BeverageDataSource;
+  // beverages: Observable<BeverageData[]>;
+  // reload: Observable<boolean>;
+  // displayedColumns = ['name', 'quantity'];
+  //
+  // constructor(public store: Store<BeverageState>, private readonly apiService: ApiService) {
+  //   this.beverages = store.select('beverages');
+  //   console.log('beverages', this.beverages);
+  //   this.reload = store.select(state => state.reload);
+  //   console.log('reload', this.reload);
+  // }
+  //
   ngOnInit() {
-    this.beverages = this.apiService.list();
-    this.dataSource = new BeverageDataSource(this.beverages);
+    console.log('beverages', this.beverages);
+    // this.apiService.list().subscribe(beverages => {
+    //   this.store.dispatch({type: 'LIST_BEVERAGES', payload: beverages});
+    // });
+    // this.beverages = this.apiService.list();
+    // this.dataSource = new BeverageDataSource(this.beverages);
   }
 }
 

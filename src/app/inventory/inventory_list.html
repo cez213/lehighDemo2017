@@ -1,33 +1,33 @@
 <h3>Inventory</h3>
 <div class="inventory">
-  <md-table #table [dataSource]="dataSource">
-    <ng-container mdColumnDef="name">
-      <md-header-cell *mdHeaderCellDef>Beverage</md-header-cell>
-      <md-cell *mdCellDef="let row">{{row.name}}</md-cell>
-    </ng-container>
+  <!--<md-table #table [dataSource]="dataSource">-->
+    <!--<ng-container mdColumnDef="name">-->
+      <!--<md-header-cell *mdHeaderCellDef>Beverage</md-header-cell>-->
+      <!--<md-cell *mdCellDef="let row">{{row.name}}</md-cell>-->
+    <!--</ng-container>-->
 
-    <ng-container mdColumnDef="quantity">
-      <md-header-cell *mdHeaderCellDef>Quantity</md-header-cell>
-      <md-cell *mdCellDef="let row">{{row.value}}</md-cell>
-    </ng-container>
+    <!--<ng-container mdColumnDef="quantity">-->
+      <!--<md-header-cell *mdHeaderCellDef>Quantity</md-header-cell>-->
+      <!--<md-cell *mdCellDef="let row">{{row.value}}</md-cell>-->
+    <!--</ng-container>-->
 
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
+    <!--<md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>-->
+    <!--<md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>-->
+  <!--</md-table>-->
 
-  <!--<table>-->
-    <!--<thead>-->
-      <!--<tr>-->
-        <!--<th></th>-->
-        <!--<th></th>-->
-      <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<tr *ngFor="let beverage of (beverages | async)">-->
-      <!--<td>{{beverage.name}}</td>-->
-      <!--<td>{{beverage.value}}</td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-  <!--</table>-->
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let beverage of beverages">
+      <td>{{beverage.name}}</td>
+      <td>{{beverage.value}}</td>
+    </tr>
+    </tbody>
+  </table>
 
 </div>
