@@ -4,10 +4,8 @@
   <app-endpoint-setter-dialog></app-endpoint-setter-dialog>
 </md-toolbar>
 <div class="app-body">
-  <app-beverage-input (addBeverage)="addBeverage($event)"></app-beverage-input>
-  <app-inventory-list [beverages]="beverages"
-                      (addBeverage)="addBeverage($event)"
-                      (listBeverages)="listBeverages($event)"></app-inventory-list>
+  <app-beverage-input></app-beverage-input>
+  <app-inventory-list></app-inventory-list>
 </div>
 
 

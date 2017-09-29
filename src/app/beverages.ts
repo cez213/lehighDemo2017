@@ -5,8 +5,6 @@ export interface BeverageState {
   beverages: BeverageData[];
 }
 
-// export type ActionTypes = ADD_BEVERAGE|CHANGE_ENDPOINT|LIST_BEVERAGES;
-
 export interface BeverageAction {
   type: string;
   payload?: BeverageData[];
@@ -14,26 +12,29 @@ export interface BeverageAction {
 
 const DEFAULT_STATE = {
   beverages: [],
-  // endpoint: '' //TODO.
 };
 
 // TODO(carolynz): UPDATE.
 export function beverages(state = DEFAULT_STATE, action: BeverageAction) {
   switch (action.type) {
     case ADD_BEVERAGE:
-      return Object.assign({}, state, action.payload);
-    // case UPDATE_BEVERAGE:
-    //   // return state.beverages.map(beverage => {
-    //   //   if (beverage.name === action.payload.name) {
-    //   //     return action.payload;
-    //   //   }
-    //   //   return beverage;
-    //   // });
+      return updateOrAdd({...state}, action);
     case CHANGE_ENDPOINT:
-      return Object.assign({}, state, action.payload);
+      return {...state, beverages: action.payload};
     case LIST_BEVERAGES:
-      return Object.assign({}, state, action.payload);
+      return {...state, beverages: action.payload};
     default:
       return state;
   }
+}
+
+function updateOrAdd(state: BeverageState, action: BeverageAction) {
+  const beverage = action.payload[0];
+  const beverageIndex = state.beverages.findIndex(({name}) => {
+    return name === beverage.name;
+  });
+
+  state.beverages[beverageIndex >= 0 ? beverageIndex : state.beverages.length] = beverage;
+
+  return state;
 }

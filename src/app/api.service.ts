@@ -30,15 +30,20 @@ export class ApiService {
     return this.http.get(`${this.getApiUrl()}/list`);
   }
 
-  addOrUpdate(beverage: BeverageData): Promise<void> {
+  addOrUpdate(beverage: BeverageData): Observable<{}> {
     const requestUrl =
-        `${this.getApiUrl()}/put?name=${beverage.name}&value=${beverage.value}`;
-    return this.http
-        .get(requestUrl)
-        .toPromise()
-        .then(res => res)
-        .catch(err => err);
+      `${this.getApiUrl()}/put?name=${beverage.name}&value=${beverage.value}`;
+    return this.http.get(requestUrl);
   }
+  // addOrUpdate(beverage: BeverageData): Promise<void> {
+  //   const requestUrl =
+  //       `${this.getApiUrl()}/put?name=${beverage.name}&value=${beverage.value}`;
+  //   return this.http
+  //       .get(requestUrl)
+  //       .toPromise()
+  //       .then(res => res)
+  //       .catch(err => err);
+  // }
 }
 
 export interface BeverageData {

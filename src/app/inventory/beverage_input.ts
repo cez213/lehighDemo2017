@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Store} from "@ngrx/store";
 import {ApiService} from '../api.service';
+import {BeverageState} from '../beverages';
 
 @Component({
   selector: 'app-beverage-input',
@@ -8,11 +10,9 @@ import {ApiService} from '../api.service';
   styleUrls: ['./inventory.css']
 })
 export class BeverageInputComponent implements OnInit {
-  @Input() addBeverage = new EventEmitter();
-
   beverageForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
+  constructor(public store: Store<BeverageState>, private fb: FormBuilder, private apiService: ApiService) {
     this.createForm();
   }
 
@@ -27,10 +27,8 @@ export class BeverageInputComponent implements OnInit {
 
   add() {
     console.log('adding beverage', this.beverageForm.value);
-    this.apiService.addOrUpdate(this.beverageForm.value).then(() => {
-      this.addBeverage.emit(this.beverageForm.value);
-      this.beverageForm.reset();
-    });
+    this.store.dispatch({type: 'ADD_BEVERAGE', payload: [this.beverageForm.value]});
+    this.apiService.addOrUpdate(this.beverageForm.value).subscribe(() => this.beverageForm.reset, () => this.beverageForm.reset);
   }
 }
 

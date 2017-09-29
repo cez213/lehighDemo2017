@@ -1,5 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
+import {StoreModule} from '@ngrx/store';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -9,6 +10,7 @@ import {MaterialModule} from '../material.module';
 
 import {InventoryListComponent} from './inventory_list';
 import {BeverageInputComponent} from './beverage_input';
+import {beverages} from '../beverages';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import {BeverageInputComponent} from './beverage_input';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    StoreModule.provideStore(beverages),
   ],
   exports: [
     InventoryListComponent,
