@@ -1,33 +1,17 @@
 <h3>Inventory</h3>
 <div class="inventory">
-  <!--<md-table #table [dataSource]="dataSource">-->
-    <!--<ng-container mdColumnDef="name">-->
-      <!--<md-header-cell *mdHeaderCellDef>Beverage</md-header-cell>-->
-      <!--<md-cell *mdCellDef="let row">{{row.name}}</md-cell>-->
-    <!--</ng-container>-->
-
-    <!--<ng-container mdColumnDef="quantity">-->
-      <!--<md-header-cell *mdHeaderCellDef>Quantity</md-header-cell>-->
-      <!--<md-cell *mdCellDef="let row">{{row.value}}</md-cell>-->
-    <!--</ng-container>-->
-
-    <!--<md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>-->
-    <!--<md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>-->
-  <!--</md-table>-->
-
-  <table>
+  <table class="inventory-table">
     <thead>
-      <tr>
-        <th></th>
-        <th></th>
+      <tr class="table-row">
+        <th class="table-header-cell">Beverage</th>
+        <th class="table-header-cell">Quantity</th>
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let beverage of beverages">
-      <td>{{beverage.name}}</td>
-      <td>{{beverage.value}}</td>
-    </tr>
+      <tr class="table-row" *ngFor="let beverage of beverages">
+        <td class="table-cell">{{beverage.name}}</td>
+        <td class="table-cell">{{beverage.value}}</td>
+      </tr>
     </tbody>
   </table>
-
 </div>

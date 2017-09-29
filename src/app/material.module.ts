@@ -31,10 +31,12 @@ import {
   MdToolbarModule,
   MdTooltipModule,
   MdStepperModule,
+  MatTableModule,
 } from '@angular/material';
 
 @NgModule({
   exports: [
+    MatTableModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,

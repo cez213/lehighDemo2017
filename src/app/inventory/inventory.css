@@ -25,3 +25,32 @@
 .app-form-btn {
   margin-left: 10px;
 }
+
+.table-row {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-bottom-color: rgba(0,0,0,.12);
+}
+
+.table-cell {
+  flex: 1;
+  color: rgba(0,0,0,.87);
+  font-size: 14px;
+}
+
+.table-header-cell {
+  flex: 1;
+  color: rgba(0,0,0,.54);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.inventory-table {
+  width: 100%;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}

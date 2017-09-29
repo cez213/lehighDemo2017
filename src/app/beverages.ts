@@ -34,7 +34,7 @@ function updateOrAdd(state: BeverageState, action: BeverageAction) {
     return name === beverage.name;
   });
 
-  state.beverages[beverageIndex >= 0 ? beverageIndex : state.beverages.length] = beverage;
-
+  const index = beverageIndex >= 0 ? beverageIndex : state.beverages.length;
+  state.beverages[index] = beverage;
   return state;
 }
