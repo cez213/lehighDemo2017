@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {MD_DIALOG_DATA, MdDialog} from '@angular/material';
 import {ApiService} from '../api.service';
+import {BeverageService} from '../beverage.service';
 
 @Component({
   selector: 'app-endpoint-setter-dialog',
@@ -9,7 +10,9 @@ import {ApiService} from '../api.service';
   styleUrls: ['../app.component.css']
 })
 export class EndpointDialogComponent {
-  constructor(private apiService: ApiService, public dialog: MdDialog) {}
+  constructor(
+      private apiService: ApiService, private beverageService: BeverageService,
+      public dialog: MdDialog) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(EndpointSetterComponent, {
@@ -19,7 +22,7 @@ export class EndpointDialogComponent {
 
     dialogRef.afterClosed().subscribe((url: string) => {
       if (url) {
-        this.apiService.setApiUrl(url);
+        this.beverageService.changeEndpoint(url);
       }
     });
   }

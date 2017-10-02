@@ -8,10 +8,41 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-row" *ngFor="let beverage of beverages">
+      <tr class="table-row" *ngFor="let beverage of (beverages | async)">
         <td class="table-cell">{{beverage.name}}</td>
         <td class="table-cell">{{beverage.value}}</td>
       </tr>
     </tbody>
   </table>
+
+  <div class="message-text" *ngIf="!(beverages | async)?.length">
+    No beverages found in the warehouse.
+  </div>
+
+  <!--<md-table #table [dataSource]="dataSource">-->
+    <!--<ng-container mdColumnDef="name">-->
+      <!--<md-header-cell *mdHeaderCellDef>Beverage</md-header-cell>-->
+      <!--<md-cell *mdCellDef="let row">{{row.name}}</md-cell>-->
+    <!--</ng-container>-->
+
+    <!--<ng-container mdColumnDef="quantity">-->
+      <!--<md-header-cell *mdHeaderCellDef>Quantity</md-header-cell>-->
+      <!--<md-cell *mdCellDef="let row">{{row.value}}</md-cell>-->
+    <!--</ng-container>-->
+
+    <!--<ng-container mdColumnDef="buttons">-->
+      <!--<md-header-cell *mdHeaderCellDef></md-header-cell>-->
+      <!--<md-cell *mdCellDef="let row">-->
+        <!--<button md-mini-fab>-->
+          <!--<i class="material-icons">&#xE145;</i>-->
+        <!--</button>-->
+        <!--<button md-mini-fab>-->
+          <!--<i class="material-icons">&#xE15B;</i>-->
+        <!--</button>-->
+      <!--</md-cell>-->
+    <!--</ng-container>-->
+
+    <!--<md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>-->
+    <!--<md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>-->
+  <!--</md-table>-->
 </div>

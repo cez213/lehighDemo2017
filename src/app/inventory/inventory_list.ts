@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {ApiService, BeverageData} from '../api.service';
-import {BeverageState} from '../beverages';
+import {BeverageData} from '../api.service';
+import {Observable} from 'rxjs/Observable';
+import {BeverageService} from '../beverage.service';
 
 @Component({
   selector: 'app-inventory-list',
@@ -9,16 +9,13 @@ import {BeverageState} from '../beverages';
   styleUrls: ['./inventory.css']
 })
 export class InventoryListComponent implements OnInit {
-  beverages: BeverageData[];
+  beverages: Observable<BeverageData[]>;
 
-  constructor(
-      public store: Store<BeverageState>,
-      private readonly apiService: ApiService) {}
+  constructor(private readonly beverageService: BeverageService) {
+    this.beverages = this.beverageService.beverages;
+  }
 
   ngOnInit() {
-    this.apiService.list().subscribe(beverages => {
-      this.store.dispatch({type: 'LIST_BEVERAGES', payload: beverages});
-      this.beverages = beverages;
-    });
+    this.beverageService.listBeverages();
   }
 }

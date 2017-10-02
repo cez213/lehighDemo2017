@@ -1,51 +1,37 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Store} from "@ngrx/store";
-import {ApiService} from '../api.service';
-import {BeverageState} from '../beverages';
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {BeverageService} from '../beverage.service';
 
 @Component({
   selector: 'app-beverage-input',
   templateUrl: './beverage_input.html',
   styleUrls: ['./inventory.css']
 })
-export class BeverageInputComponent implements OnInit {
+export class BeverageInputComponent implements OnInit, OnChanges {
   beverageForm: FormGroup;
 
-  constructor(public store: Store<BeverageState>, private fb: FormBuilder, private apiService: ApiService) {
+  constructor(
+      private fb: FormBuilder, private beverageService: BeverageService) {}
+
+  ngOnInit() {
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnChanges() {
+    this.beverageForm.reset({name: null, value: null});
+  }
 
   createForm() {
     this.beverageForm = this.fb.group({
-      name: [null, Validators.required],
-      value: [null, Validators.required]
+      name: new FormControl(null),
+      value: new FormControl(null)
     });
   }
 
   add() {
-    this.apiService.addOrUpdate(this.beverageForm.value)
-        .subscribe(
-            () => this.updateSaved(), () => this.updateSaved());
-  }
-
-  // TODO(carolynz): FIX.
-  showError(field: string) {
-    return this.beverageForm.get(field).hasError('required') && this.beverageForm.value.touched();
-  }
-
-  private updateSaved() {
-    this.store.dispatch(
-      {type: 'ADD_BEVERAGE', payload: [this.beverageForm.value]});
-    this.resetForm();
-  }
-
-  private resetForm() {
-    this.beverageForm.reset();
-    this.beverageForm.setErrors(null, {emitEvent: true});
-    this.createForm();
+    this.beverageService.addBeverage(this.beverageForm.value);
+    this.ngOnChanges();
   }
 }
+
 

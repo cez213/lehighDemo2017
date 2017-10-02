@@ -1,4 +1,4 @@
-import {ADD_BEVERAGE, CHANGE_ENDPOINT, LIST_BEVERAGES} from './actions';
+import {ADD_BEVERAGE, LIST_BEVERAGES} from './actions';
 import {BeverageData} from './api.service';
 
 export interface BeverageState {
@@ -19,8 +19,6 @@ export function beverages(state = DEFAULT_STATE, action: BeverageAction) {
   switch (action.type) {
     case ADD_BEVERAGE:
       return updateOrAdd({...state}, action);
-    case CHANGE_ENDPOINT:
-      return {...state, beverages: action.payload};
     case LIST_BEVERAGES:
       return {...state, beverages: action.payload};
     default:

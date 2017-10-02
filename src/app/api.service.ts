@@ -8,6 +8,8 @@ export const DEFAULT_ENDPOINT = '//tutorial-179815.appspot.com';
 
 @Injectable()
 export class ApiService {
+  beverages: Observable<BeverageData[]>;
+
   constructor(private http: HttpClient) {
     // Initially set the url to the default endpoint.
     if (!this.getApiUrl()) {
@@ -15,7 +17,6 @@ export class ApiService {
     }
   }
 
-  // TODO(carolynz): check url format also check there is no slash at the end.
   setApiUrl(url: string) {
     // Remove previous url.
     localStorage.removeItem('apiUrl');

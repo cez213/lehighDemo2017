@@ -11,6 +11,7 @@
 .inventory {
   width: 100%;
   max-width: 1200px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
 .inventory .mat-mini-fab {
@@ -53,4 +54,9 @@
 .inventory-table {
   width: 100%;
   font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.message-text {
+  padding: 10px;
+  font-size: 16px;
 }
