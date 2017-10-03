@@ -1,16 +1,17 @@
-<h3>Add a beverage</h3>
-<form (ngSubmit)="add()" [formGroup]="beverageForm" class="example-form">
+<h3>Add or update a beverage</h3>
+<form #formDir="ngForm" (ngSubmit)="onSubmit()" [formGroup]="beverageForm"
+      class="example-form">
   <md-form-field>
     <input mdInput type="text" placeholder="New beverage" formControlName="name"
            autocomplete="off">
-    <md-error *ngIf="!beverageForm.pristine && beverageForm.get('name').hasError()">
+    <md-error *ngIf="beverageForm.get('name').hasError('required')">
       Beverage name is <strong>required</strong>
     </md-error>
   </md-form-field>
   <md-form-field>
     <input mdInput type="number" placeholder="Quantity" formControlName="value"
            autocomplete="off">
-    <md-error>
+    <md-error *ngIf="beverageForm.get('value').hasError('required')">
       Quantity is <strong>required</strong>
     </md-error>
   </md-form-field>

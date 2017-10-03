@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BeverageService} from '../beverage.service';
 
@@ -7,7 +7,9 @@ import {BeverageService} from '../beverage.service';
   templateUrl: './beverage_input.html',
   styleUrls: ['./inventory.css']
 })
-export class BeverageInputComponent implements OnInit, OnChanges {
+export class BeverageInputComponent implements OnInit {
+  // Get access to the ngForm value.
+  @ViewChild('formDir') form;
   beverageForm: FormGroup;
 
   constructor(
@@ -17,20 +19,17 @@ export class BeverageInputComponent implements OnInit, OnChanges {
     this.createForm();
   }
 
-  ngOnChanges() {
-    this.beverageForm.reset({name: null, value: null});
-  }
-
   createForm() {
     this.beverageForm = this.fb.group({
-      name: new FormControl(null),
-      value: new FormControl(null)
+      name: new FormControl(null, Validators.required),
+      value: new FormControl(null, Validators.required)
     });
   }
 
-  add() {
-    this.beverageService.addBeverage(this.beverageForm.value);
-    this.ngOnChanges();
+  /** Called by the view when the form is submitted. */
+  onSubmit() {
+    this.beverageService.updateBeverage(this.beverageForm.value);
+    this.form.resetForm();
   }
 }
 

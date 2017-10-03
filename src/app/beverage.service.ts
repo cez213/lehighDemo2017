@@ -26,7 +26,7 @@ export class BeverageService {
         () => this.dispatchEvent(LIST_BEVERAGES));
   }
 
-  addBeverage(beverage: BeverageData) {
+  updateBeverage(beverage: BeverageData) {
     this.apiService.addOrUpdate(beverage).subscribe(
         () => this.dispatchEvent(ADD_BEVERAGE, [beverage]),
         () => this.dispatchEvent(ADD_BEVERAGE, [beverage]));
