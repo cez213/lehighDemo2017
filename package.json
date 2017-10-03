@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +25,8 @@
     "@angular/router": "^4.2.4",
     "@ngrx/core": "^1.2.0",
     "@ngrx/store": "^2.2.3",
+    "body-parser": "1.16.1",
+    "express": "4.14.1",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
@@ -49,5 +51,8 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3"
+  },
+  "engines": {
+    "node": "~6"
   }
 }
