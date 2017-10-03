@@ -18,4 +18,14 @@ export class InventoryListComponent implements OnInit {
   ngOnInit() {
     this.beverageService.listBeverages();
   }
+
+  increase(beverage: BeverageData) {
+    beverage.value = beverage.value + 1;
+    this.beverageService.updateBeverage(beverage);
+  }
+
+  decrease(beverage: BeverageData) {
+    beverage.value = beverage.value - 1;
+    this.beverageService.updateBeverage(beverage);
+  }
 }
