@@ -5,19 +5,3 @@ env: flex
 
 manual_scaling:
   instances: 1
-
-# Temporary setting to keep gcloud from uploading files that are not required for deployment.
-skip_files:
-- ^node_modules$
-- ^app\.yaml
-- ^README\..*
-- \.gitignore
-- ^\.git$
-- ^grunt\.js
-- ^src$
-- ^e2e$
-- \.editorconfig
-- ^karma\.config\.js
-- ^package\.json
-- ^protractor\.conf\.js
-- ^tslint\.json
