@@ -13,7 +13,7 @@ export class BeverageService {
       private apiService: ApiService, private store: Store<BeverageState>) {
     this.beverages =
         this.store.select(beverageState => beverageState.beverages);
-}
+  }
 
   changeEndpoint(url: string) {
     this.apiService.setApiUrl(url);

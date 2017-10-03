@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 
 export const DEFAULT_ENDPOINT = '//tutorial-179815.appspot.com';
 
@@ -17,20 +15,27 @@ export class ApiService {
     }
   }
 
+  /**
+   * Removes the previously stored apiUrl from the local storage and saves the
+   * new url in local storage with a key of 'apiUrl'.
+   */
   setApiUrl(url: string) {
     // Remove previous url.
     localStorage.removeItem('apiUrl');
     localStorage.setItem('apiUrl', url);
   }
 
+  /** Get the current endpoint url from local storage. */
   getApiUrl(): string {
     return localStorage.getItem('apiUrl');
   }
 
+  /** Lists all the beverages. */
   list(): Observable<BeverageData[]> {
     return this.http.get(`${this.getApiUrl()}/list`);
   }
 
+  /** Adds beverage if it does not exist, or updates an existing value. */
   addOrUpdate(beverage: BeverageData): Observable<{}> {
     const requestUrl =
       `${this.getApiUrl()}/put?name=${beverage.name}&value=${beverage.value}`;
