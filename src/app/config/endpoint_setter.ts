@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
 import {MD_DIALOG_DATA, MdDialog} from '@angular/material';
 import {ApiService} from '../api.service';
 import {BeverageService} from '../beverage.service';
@@ -42,10 +42,18 @@ export class EndpointSetterComponent {
     this.createFormControl();
   }
 
-  // TODO(carolynz): Add validator for url format.
   createFormControl() {
     this.urlFormControl = new FormControl('', [
       Validators.required,
+      endpointUrlValidator(/^\/{2}.*\.com$/i)
     ]);
   }
+}
+
+/** Custom validator to check if the inputted url is correct. */
+export function endpointUrlValidator(urlRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} => {
+    const correctUrl = urlRe.test(control.value);
+    return correctUrl ? null : {'incorrectUrl': {value: control.value}};
+  };
 }

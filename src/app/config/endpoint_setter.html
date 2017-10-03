@@ -8,10 +8,14 @@
     <md-form-field class="endpoint-setter-field">
       <input mdInput placeholder="Endpoint URL" [formControl]="urlFormControl">
       <md-hint align="start"><strong>Ex: //tutorial-somenumber.appspot.com</strong></md-hint>
+      <md-error *ngIf="urlFormControl.hasError('incorrectUrl')">
+        Url must start with `//` and end with `.com`
+      </md-error>
     </md-form-field>
   </form>
 </md-dialog-content>
 <md-dialog-actions>
-  <button md-button [md-dialog-close]="urlFormControl.value">Save</button>
+  <button md-button [disabled]="urlFormControl.invalid"
+          [md-dialog-close]="urlFormControl.value">Save</button>
   <button md-button md-dialog-close>Close</button>
 </md-dialog-actions>
