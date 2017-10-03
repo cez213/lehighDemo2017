@@ -1,5 +1,4 @@
 'use strict';
-
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -18,9 +17,6 @@ app.use(function (err, req, res, next) {
   res.status(500).send(err.message || 'Something broke!');
   next(err || new Error('Something broke!'));
 });
-if (process.env.NODE_ENV === 'production') {
-  app.use(errorHandler.express);
-}
 
 if (module === require.main) {
   // Start the server
