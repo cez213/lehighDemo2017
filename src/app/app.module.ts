@@ -17,11 +17,11 @@ import {beverages} from './beverages';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    StoreModule.provideStore(beverages),
-    InventoryModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    InventoryModule,
+    StoreModule.provideStore(beverages),
   ],
   declarations: [
     AppComponent,

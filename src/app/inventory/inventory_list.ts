@@ -25,7 +25,7 @@ export class InventoryListComponent implements OnInit {
   }
 
   decrease(beverage: BeverageData) {
-    beverage.value = beverage.value - 1;
+    beverage.value = beverage.value > 0 ? beverage.value - 1 : 0;
     this.beverageService.updateBeverage(beverage);
   }
 }
