@@ -1,21 +1,21 @@
 <h3 md-dialog-title>Set your endpoint url</h3>
-<md-dialog-content>
+<mat-dialog-content>
   <div class="small-text small-space-below">
     Currently this application is using the endpoint at: <strong>{{apiUrl}}</strong>.
     Add your URL below to point this frontend to your backend.
   </div>
   <form class="endpoint-setter-form">
-    <md-form-field class="endpoint-setter-field">
-      <input mdInput placeholder="Endpoint URL" [formControl]="urlFormControl">
-      <md-hint align="start"><strong>Ex: //tutorial-somenumber.appspot.com</strong></md-hint>
-      <md-error *ngIf="urlFormControl.hasError('incorrectUrl')">
+    <mat-form-field class="endpoint-setter-field">
+      <input matInput placeholder="Endpoint URL" [formControl]="urlFormControl">
+      <mat-hint align="start"><strong>Ex: //tutorial-somenumber.appspot.com</strong></mat-hint>
+      <mat-error *ngIf="urlFormControl.hasError('incorrectUrl')">
         Url must start with `//` and end with `.com`
-      </md-error>
-    </md-form-field>
+      </mat-error>
+    </mat-form-field>
   </form>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-button [disabled]="urlFormControl.invalid"
-          [md-dialog-close]="urlFormControl.value">Save</button>
-  <button md-button md-dialog-close>Close</button>
-</md-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [disabled]="urlFormControl.invalid"
+          [mat-dialog-close]="urlFormControl.value">Save</button>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
