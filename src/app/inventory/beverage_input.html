@@ -2,6 +2,7 @@
 <form #formDir="ngForm" (ngSubmit)="onSubmit()" [formGroup]="beverageForm"
       class="example-form">
   <md-form-field>
+    <label>New beverage</label>
     <input mdInput type="text" placeholder="New beverage" formControlName="name"
            autocomplete="off">
     <md-error *ngIf="beverageForm.get('name').hasError('required')">
@@ -9,14 +10,18 @@
     </md-error>
   </md-form-field>
   <md-form-field>
+    <label>Quantity</label>
     <input mdInput type="number" placeholder="Quantity" formControlName="value"
            autocomplete="off">
     <md-error *ngIf="beverageForm.get('value').hasError('required')">
       Quantity is <strong>required</strong>
     </md-error>
+    <md-error *ngIf="beverageForm.get('value').hasError('min')">
+      Quantity must be greater than 0
+    </md-error>
   </md-form-field>
   <button md-raised-button color="primary"
-          [disabled]="beverageForm.pristine"
+          [disabled]="beverageForm.invalid"
           class="app-form-btn"
           type="submit">Add</button>
 </form>
