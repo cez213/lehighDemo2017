@@ -22,7 +22,7 @@ export class BeverageInputComponent implements OnInit {
   createForm() {
     this.beverageForm = this.fb.group({
       name: new FormControl(null, Validators.required),
-      value: new FormControl(null, Validators.required)
+      value: new FormControl(null, [Validators.required, Validators.min(0)])
     });
   }
 

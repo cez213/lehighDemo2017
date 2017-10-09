@@ -14,9 +14,12 @@
     <md-error *ngIf="beverageForm.get('value').hasError('required')">
       Quantity is <strong>required</strong>
     </md-error>
+    <md-error *ngIf="beverageForm.get('value').hasError('min')">
+      Quantity must be greater than zero
+    </md-error>
   </md-form-field>
   <button md-raised-button color="primary"
-          [disabled]="beverageForm.pristine"
+          [disabled]="beverageForm.invalid"
           class="app-form-btn"
           type="submit">Add</button>
 </form>
