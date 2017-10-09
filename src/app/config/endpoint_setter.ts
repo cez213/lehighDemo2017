@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
-import {MD_DIALOG_DATA, MdDialog} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 import {ApiService} from '../api.service';
 import {BeverageService} from '../beverage.service';
 
@@ -12,7 +12,7 @@ import {BeverageService} from '../beverage.service';
 export class EndpointDialogComponent {
   constructor(
       private apiService: ApiService, private beverageService: BeverageService,
-      public dialog: MdDialog) {}
+      public dialog: MatDialog) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(EndpointSetterComponent, {
@@ -37,7 +37,7 @@ export class EndpointSetterComponent {
   apiUrl: string;
   urlFormControl: FormControl;
 
-  constructor(@Inject(MD_DIALOG_DATA) public data: {apiUrl: string}) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {apiUrl: string}) {
     this.apiUrl = data.apiUrl;
     this.createFormControl();
   }
